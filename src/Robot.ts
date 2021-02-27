@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import debug from 'debug'
 import colors from 'colors'
 import CryptoJS from 'crypto-js'
@@ -23,7 +23,7 @@ export class Robot {
             console.warn(colors.yellow('Secret is undefined'))
         }
     }
-    private getSign(timeStamp: Number) {
+    private getSign(timeStamp: number) {
         let signStr = ''
         if (this.secret) {
             signStr = CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA256(`${timeStamp}\n${this.secret}`, this.secret))
@@ -32,7 +32,7 @@ export class Robot {
         return signStr
     }
 
-    private async request(body: any) {
+    private async request(body: any): Promise<AxiosResponse<any> | undefined> {
         Debugger('Send message: %O ', body)
         try {
             const timestamp = Date.now()
@@ -48,7 +48,7 @@ export class Robot {
                 },
             })
             Debugger('Result is %s, %s。', result.data.errcode, result.data.errmsg)
-            if ( result.data.errcode === 310000) {
+            if (result.data.errcode === 310000) {
                 console.error('Send Failed:', result.data)
                 Debugger('Please check safe config : %O', result.data)
             }
@@ -62,8 +62,8 @@ export class Robot {
         }
     }
 
-    public async send(message: Message) {
-        let body = message.get()
+    public async send(message: Message): Promise<AxiosResponse<any> | undefined> {
+        const body = message.get()
         return this.request(body)
     }
 }

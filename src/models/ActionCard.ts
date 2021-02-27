@@ -25,7 +25,7 @@ class ActionCard extends MessageTemplateAbs {
         this.btns = []
     }
 
-    setBtns(btns: ConcatArray<{ title: string; actionURL: string }>) {
+    setBtns(btns: ConcatArray<{ title: string, actionURL: string }>) {
         this.btns = this.btns.concat(btns)
         return this
     }

@@ -43,7 +43,7 @@ class MessageTemplateAbs {
 
     atPhone(phones: string | string[]) {
         if (phones instanceof Array) {
-            phones.map(phone => {
+            phones.forEach((phone) => {
                 this.atMobiles.add(phone)
             })
         } else {
@@ -54,7 +54,7 @@ class MessageTemplateAbs {
 
     atId(ids: string | string[]) {
         if (ids instanceof Array) {
-            ids.map(phone => {
+            ids.forEach((phone) => {
                 this.atDingtalkIds.add(phone)
             })
         } else {
