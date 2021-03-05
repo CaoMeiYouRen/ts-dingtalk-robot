@@ -1,5 +1,7 @@
 # ts-dingtalk-robot
 
+### 目前更推荐使用 [push-all-in-one](https://github.com/CaoMeiYouRen/push-all-in-one) 来集成多方推送
+
 在[dingtalk-robot-sdk](https://github.com/ineo6/dingtalk-robot-sdk) 的基础上使用Typescript重构了一下，用法几乎完全一致。
 钉钉自定义机器人SDk, 支持文本 (text)、链接 (link)、markdown(markdown)、ActionCard、FeedCard消息类型。
 
